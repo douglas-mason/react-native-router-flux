@@ -63,7 +63,7 @@ interface SceneProps extends React.Props<Scene> {
   rightButtonTextStyle?: StyleProp<TextStyle>;
   success?: (() => void) | string;
   tabs?: boolean;
-  title?: string;
+  title?: (() => string) | string;
   titleStyle?: StyleProp<TextStyle>;
   type?: ActionConstShort;
   [name: string]: any; // These are passed through to the scenes
@@ -98,7 +98,7 @@ interface TabsProps extends React.Props<Tabs> {
   tabBarOnPress?: Function;
   backToInitial?: boolean;
 }
-interface TabsStatic extends React.ComponentClass<TabsProps> {}
+interface TabsStatic extends React.ComponentClass<SceneProps & TabsProps> {}
 export type TabBarPositionType = 'top' | 'bottom';
 
 // Drawer
@@ -106,7 +106,7 @@ export var Drawer: DrawerStatic;
 export type Drawer = DrawerStatic;
 interface DrawerProps extends React.Props<Drawer> {
   drawerImage?: Image;
-  drawerIcon?: React.ComponentType<any>;
+  drawerIcon?: React.ReactElement<any> | React.ComponentType<any>;
   drawerPosition?: DrawerPositionType;
 }
 interface DrawerStatic extends React.ComponentClass<SceneProps & DrawerProps> {}
